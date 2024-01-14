@@ -37,73 +37,73 @@ if __name__ == "__main__":
         prompt = "(hbnb) "
 
         def do_update(self, args):
-        """
-        Updates an instance based on the class name and id 
-        by adding or updating attribute (save the change into the JSON file).
-        Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com".
+            """
+            Updates an instance based on the class name and id 
+            by adding or updating attribute (save the change into the JSON file).
+            Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com".
 
-        Usage: update <class name> <id> <attribute name> "<attribute value>"
-        Only one attribute can be updated at the time!!!
-        You can assume the attribute name is valid (exists for this model)
-        The attribute value must be casted to the attribute type!!!
+            Usage: update <class name> <id> <attribute name> "<attribute value>"
+            Only one attribute can be updated at the time!!!
+            You can assume the attribute name is valid (exists for this model)
+            The attribute value must be casted to the attribute type!!!
 
-        id, created_at and updated_at cant’ be updated.
-        You can assume they won’t be passed in the update command
-        Only “simple” arguments can be updated: string, integer and float.
-        You can assume nobody will try to update list of ids or datetime.
-        """
-        list_args = args.split()
-        if len(list_args) < 1:
-            print("** class name missing **")
-        else:
-            if list_args[0] in self.HBNBClasses:
-                if len(list_args) > 1:
-                    key = f"{list_args[0]}.{list_args[1]}"
-                    storage.reload()
-                    change__objects_dict = storage.all()
-                    if key in change__objects_dict:
-                        if len(list_args) > 2:
-                            if len(list_args) > 3:
-                                attribute_name = list_args[2]
-                                attribute_value = str(ast.literal_eval(list_args[3]))
-                                try:
-                                    if isinstance(change__objects_dict[key][attribute_name],
-                                                  int):
-                                        attribute_value = int(attribute_value)
-                                        change__objects_dict[key][
-                                            attribute_name] = attribute_value
-                                    elif isinstance(change__objects_dict[key][attribute_name],
-                                                    float):
-                                        attribute_value = float(attribute_value)
-                                        change__objects_dict[key][
-                                            attribute_name] = attribute_value
-                                    else:
-                                        change__objects_dict[key][
-                                            attribute_name] = attribute_value
-                                except KeyError:
+            id, created_at and updated_at cant’ be updated.
+            You can assume they won’t be passed in the update command
+            Only “simple” arguments can be updated: string, integer and float.
+            You can assume nobody will try to update list of ids or datetime.
+            """
+            list_args = args.split()
+            if len(list_args) < 1:
+                print("** class name missing **")
+            else:
+                if list_args[0] in self.HBNBClasses:
+                    if len(list_args) > 1:
+                        key = f"{list_args[0]}.{list_args[1]}"
+                        storage.reload()
+                        change__objects_dict = storage.all()
+                        if key in change__objects_dict:
+                            if len(list_args) > 2:
+                                if len(list_args) > 3:
+                                    attribute_name = list_args[2]
+                                    attribute_value = str(ast.literal_eval(list_args[3]))
                                     try:
-                                        if isinstance(int(attribute_value), int):
-                                          change__objects_dict[key][attribute_name] = int(
-                                              attribute_value)
-                                    except ValueError:
-                                        try:
-                                            if isinstance(float(attribute_value), float):
-                                              change__objects_dict[key][attribute_name] = float(
-                                                  attribute_value)
-                                        except ValueError:
+                                        if isinstance(change__objects_dict[key][attribute_name],
+                                                        int):
+                                            attribute_value = int(attribute_value)
                                             change__objects_dict[key][
                                                 attribute_name] = attribute_value
-                                storage.save()
+                                        elif isinstance(change__objects_dict[key][attribute_name],
+                                                        float):
+                                            attribute_value = float(attribute_value)
+                                            change__objects_dict[key][
+                                                attribute_name] = attribute_value
+                                        else:
+                                            change__objects_dict[key][
+                                                attribute_name] = attribute_value
+                                    except KeyError:
+                                        try:
+                                            if isinstance(int(attribute_value), int):
+                                                change__objects_dict[key][attribute_name] = int(
+                                                    attribute_value)
+                                        except ValueError:
+                                            try:
+                                                if isinstance(float(attribute_value), float):
+                                                    change__objects_dict[key][attribute_name] = float(
+                                                        attribute_value)
+                                            except ValueError:
+                                                change__objects_dict[key][
+                                                    attribute_name] = attribute_value
+                                    storage.save()
+                                else:
+                                    print("** value missing **")
                             else:
-                                print("** value missing **")
+                                print("** attribute name missing **")
                         else:
-                            print("** attribute name missing **")
+                            print("** no instance found **")
                     else:
-                        print("** no instance found **")
+                        print("** instance id missing **")
                 else:
-                    print("** instance id missing **")
-            else:
-                print("** class doesn't exist **")
+                    print("** class doesn't exist **")
 
         def do_all(self, arg):
             """
@@ -162,7 +162,7 @@ if __name__ == "__main__":
                     model.save()
                     print(model.id)
                     storage.reload()
-                 elif arg == "Place":
+                elif arg == "Place":
                     model = Place()
                     model.save()
                     print(model.id)
