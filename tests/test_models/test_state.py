@@ -14,3 +14,6 @@ class TestState(unittest.TestCase):
     state_1.save()
     storage.reload()
     self.assertTrue(state1_key in storage.all())
+
+  def test_state_public_class_attribute(self):
+    self.assertEqual(State.name, "")

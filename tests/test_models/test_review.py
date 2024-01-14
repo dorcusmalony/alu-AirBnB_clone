@@ -14,3 +14,8 @@ class TestReview(unittest.TestCase):
     review_1.save()
     storage.reload()
     self.assertTrue(review1_key in storage.all())
+
+  def test_review_public_class_attribute(self):
+    self.assertEqual(Review.place_id, "")
+    self.assertEqual(Review.user_id, "")
+    self.assertEqual(Review.text, "")

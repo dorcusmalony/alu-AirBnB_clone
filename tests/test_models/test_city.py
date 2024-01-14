@@ -14,3 +14,7 @@ class TestCity(unittest.TestCase):
     city_1.save()
     storage.reload()
     self.assertTrue(city1_key in storage.all())
+
+  def test_city_public_class_attribute(self):
+    self.assertEqual(City.state_id, "")
+    self.assertEqual(City.name, "")
