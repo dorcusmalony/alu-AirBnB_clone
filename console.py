@@ -19,6 +19,7 @@ import cmd
 import copy
 import sys
 
+
 class HBNBCommand(cmd.Cmd):
     """
     Your command interpreter should implement:
@@ -64,34 +65,42 @@ class HBNBCommand(cmd.Cmd):
                         if len(list_args) > 2:
                             if len(list_args) > 3:
                                 attribute_name = list_args[2]
-                                attribute_value = str(ast.literal_eval(list_args[3]))
+                                attribute_value = str(ast.literal_eval
+                                                      (list_args[3]))
                                 try:
-                                    if isinstance(change__objects_dict[key][attribute_name],
-                                                    int):
+                                    if isinstance(change__objects_dict[key]
+                                                  [attribute_name],
+                                                  int):
                                         attribute_value = int(attribute_value)
                                         change__objects_dict[key][
                                             attribute_name] = attribute_value
-                                    elif isinstance(change__objects_dict[key][attribute_name],
+                                    elif isinstance(change__objects_dict[key]
+                                                    [attribute_name],
                                                     float):
-                                        attribute_value = float(attribute_value)
-                                        change__objects_dict[key][
-                                            attribute_name] = attribute_value
+                                        attribute_value = \
+                                                float(attribute_value)
+                                        change__objects_dict[key]
+                                        [attribute_name] = attribute_value
                                     else:
                                         change__objects_dict[key][
                                             attribute_name] = attribute_value
                                 except KeyError:
                                     try:
-                                        if isinstance(int(attribute_value), int):
-                                            change__objects_dict[key][attribute_name] = int(
+                                        if isinstance(int(attribute_value),
+                                                      int):
+                                            change__objects_dict[key]
+                                            [attribute_name] = int(
                                                 attribute_value)
                                     except ValueError:
                                         try:
-                                            if isinstance(float(attribute_value), float):
-                                                change__objects_dict[key][attribute_name] = float(
+                                            if isinstance(float
+                                                          (attribute_value),
+                                                          float):
+                                                change__objects_dict[key]
+                                                [attribute_name] = float(
                                                     attribute_value)
                                         except ValueError:
-                                            change__objects_dict[key][
-                                                attribute_name] = attribute_value
+                                            change__objects_dict[key][attribute_name] = attribute_value
                                 storage.save()
                             else:
                                 print("** value missing **")
