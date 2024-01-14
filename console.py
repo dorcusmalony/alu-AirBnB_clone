@@ -119,23 +119,20 @@ class HBNBCommand(cmd.Cmd):
         based or not on the class name.
         Ex: $ all BaseModel or $ all.
         """
-        if arg == "":
-            print("** class name missing **")
+        if arg in self.HBNBClasses or arg == "":
+            storage.reload()
+            display_all_list = []
+            temp_show_dict = copy.deepcopy(storage.all())
+            for key in list(temp_show_dict):
+                base_class = temp_show_dict[key]["__class__"]
+                del temp_show_dict[key]["__class__"]
+                display_all_list.append(
+                    f"[{base_class}] ({temp_show_dict[key]['id']}) \
+                            {temp_show_dict[key]}"
+                    )
+            print(display_all_list)
         else:
-            if arg in self.HBNBClasses or arg == ".":
-                storage.reload()
-                display_all_list = []
-                temp_show_dict = copy.deepcopy(storage.all())
-                for key in list(temp_show_dict):
-                    base_class = temp_show_dict[key]["__class__"]
-                    del temp_show_dict[key]["__class__"]
-                    display_all_list.append(
-                        f"[{base_class}] ({temp_show_dict[key]['id']}) \
-                                {temp_show_dict[key]}"
-                        )
-                print(display_all_list)
-            else:
-                print("** class doesn't exist **")
+            print("** class doesn't exist **")
 
     def do_create(self, arg):
         """
