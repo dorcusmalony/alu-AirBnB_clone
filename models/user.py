@@ -14,6 +14,11 @@ class User(BaseModel):
     first_name: string - empty string
     last_name: string - empty string
     """
+    # Public class attributes
+    email = ""        # empty string
+    password = ""     # empty string
+    first_name = ""   # empty string
+    last_name = ""    # empty string
 
     def __init__(self):
         self.email = ""
