@@ -14,6 +14,9 @@ class City(BaseModel):
     it will be the State.id
     name: string - empty string
     """
+    state_id = ""
+    name = ""
+    
     def __init__(self):
         self.state_id = ""
         self.name = ""
