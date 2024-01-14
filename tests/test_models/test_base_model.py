@@ -51,6 +51,19 @@ class TestBaseModel(unittest.TestCase):
     self.assertNotEqual(before_save2, after_save2)
     self.assertNotEqual(before_save3, after_save3)
 
+  def test_save_method_2(self):
+    obj1 = BaseModel()
+    before_save1 = obj1.updated_at
+    before_save2 = obj1.created_at
+    obj1.save()
+    after_save1 = obj1.updated_at.isoformat()
+    after_save2 = obj1.created_at.isoformat()
+    self.assertIsInstance(before_save1, datetime)
+    self.assertIsInstance(before_save2, datetime)
+    self.assertIsInstance(after_save1, str)
+    self.assertIsInstance(after_save2, str)
+    storage.reload()
+
   def test_isformat_method(self):
     obj1 = BaseModel()
     obj1.save()
