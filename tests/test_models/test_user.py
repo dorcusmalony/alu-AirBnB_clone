@@ -14,3 +14,9 @@ class TestUser(unittest.TestCase):
     user_1.save()
     storage.reload()
     self.assertTrue(user1_key in storage.all())
+
+  def test_user_public_class_attributes(self):
+        self.assertEqual(User.email, "")
+        self.assertEqual(User.password, "")
+        self.assertEqual(User.first_name, "")
+        self.assertEqual(User.last_name, "")
