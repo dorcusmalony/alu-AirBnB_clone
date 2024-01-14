@@ -38,11 +38,13 @@ if __name__ == "__main__":
 
         def do_update(self, args):
             """
-            Updates an instance based on the class name and id 
-            by adding or updating attribute (save the change into the JSON file).
+            Updates an instance based on the class name and id
+            by adding or updating attribute (save the change
+            into the JSON file).
             Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com".
 
-            Usage: update <class name> <id> <attribute name> "<attribute value>"
+            Usage:
+            update <class name> <id> <attribute name> "<attribute value>"
             Only one attribute can be updated at the time!!!
             You can assume the attribute name is valid (exists for this model)
             The attribute value must be casted to the attribute type!!!
@@ -65,34 +67,45 @@ if __name__ == "__main__":
                             if len(list_args) > 2:
                                 if len(list_args) > 3:
                                     attribute_name = list_args[2]
-                                    attribute_value = str(ast.literal_eval(list_args[3]))
+                                    attribute_value = str(ast.literal_eval
+                                                          (list_args[3]))
                                     try:
-                                        if isinstance(change__objects_dict[key][attribute_name],
-                                                        int):
-                                            attribute_value = int(attribute_value)
-                                            change__objects_dict[key][
-                                                attribute_name] = attribute_value
-                                        elif isinstance(change__objects_dict[key][attribute_name],
+                                        if isinstance(change__objects_dict[key]
+                                                      [attribute_name], int):
+                                            attribute_value = int
+                                            (attribute_value)
+                                            change__objects_dict[key]
+                                            [attribute_name] = attribute_value
+                                        elif isinstance(change__objects_dict
+                                                        [key][attribute_name],
                                                         float):
-                                            attribute_value = float(attribute_value)
-                                            change__objects_dict[key][
-                                                attribute_name] = attribute_value
+                                            attribute_value = float
+                                            (attribute_value)
+                                            change__objects_dict[key]
+                                            [attribute_name] = attribute_value
                                         else:
-                                            change__objects_dict[key][
-                                                attribute_name] = attribute_value
+                                            change__objects_dict[key]
+                                            [attribute_name] = attribute_value
                                     except KeyError:
                                         try:
-                                            if isinstance(int(attribute_value), int):
-                                                change__objects_dict[key][attribute_name] = int(
+                                            if isinstance(int(attribute_value),
+                                                          int):
+                                                change__objects_dict[key]
+                                                [attribute_name] = int(
                                                     attribute_value)
                                         except ValueError:
                                             try:
-                                                if isinstance(float(attribute_value), float):
-                                                    change__objects_dict[key][attribute_name] = float(
+                                                if isinstance(
+                                                        float
+                                                        (attribute_value),
+                                                        float):
+                                                    change__objects_dict[key]
+                                                    [attribute_name] = float(
                                                         attribute_value)
                                             except ValueError:
-                                                change__objects_dict[key][
-                                                    attribute_name] = attribute_value
+                                                change__objects_dict[key]
+                                                [attribute_name] = \
+                                                    attribute_value
                                     storage.save()
                                 else:
                                     print("** value missing **")
@@ -122,15 +135,16 @@ if __name__ == "__main__":
                         base_class = temp_show_dict[key]["__class__"]
                         del temp_show_dict[key]["__class__"]
                         display_all_list.append(
-                            f"[{base_class}] ({temp_show_dict[key]['id']}) {temp_show_dict[key]}"
-            )
+                            f"[{base_class}] ({temp_show_dict[key]['id']}) \
+                                    {temp_show_dict[key]}"
+                            )
                     print(display_all_list)
                 else:
                     print("** class doesn't exist **")
 
         def do_create(self, arg):
             """
-            Creates a new instance of BaseModel, 
+            Creates a new instance of BaseModel,
             saves it (to the JSON file) and prints the id
             Ex: $ create BaseModel
             """
@@ -202,7 +216,7 @@ if __name__ == "__main__":
 
         def do_show(self, args):
             """
-            Prints the string representation of an 
+            Prints the string representation of an
             instance based on the class name and id
             Ex: $ show BaseModel 1234-1234-1234.
             """
@@ -219,7 +233,9 @@ if __name__ == "__main__":
                             base_class = temp_show_dict[key]["__class__"]
                             del temp_show_dict[key]["__class__"]
                             print(
-                                f"[{base_class}] ({temp_show_dict[key]['id']}) {temp_show_dict[key]}"
+                                f"[{base_class}] \
+                                        ({temp_show_dict[key]['id']}) \
+                                        {temp_show_dict[key]}"
                             )
                         else:
                             print("** no instance found **")
