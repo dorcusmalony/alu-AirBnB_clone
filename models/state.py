@@ -13,7 +13,7 @@ class State(BaseModel):
     name: string - empty string
     """
     name = ""
-    
+
     def __init__(self):
         self.name = ""
         super().__init__()
