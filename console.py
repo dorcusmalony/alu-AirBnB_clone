@@ -60,47 +60,47 @@ class HBNBCommand(cmd.Cmd):
                 if len(list_args) > 1:
                     key = f"{list_args[0]}.{list_args[1]}"
                     storage.reload()
-                    change__objects_dict = storage.all()
-                    if key in change__objects_dict:
+                    object = storage.all()
+                    if key in object:
                         if len(list_args) > 2:
                             if len(list_args) > 3:
-                                attribute_name = list_args[2]
-                                attribute_value = str(ast.literal_eval
+                                attr_name = list_args[2]
+                                attr_val = str(ast.literal_eval
                                                       (list_args[3]))
                                 try:
-                                    if isinstance(change__objects_dict[key]
-                                                  [attribute_name],
+                                    if isinstance(object[key]
+                                                  [attr_name],
                                                   int):
-                                        attribute_value = int(attribute_value)
-                                        change__objects_dict[key][
-                                            attribute_name] = attribute_value
-                                    elif isinstance(change__objects_dict[key]
-                                                    [attribute_name],
+                                        attr_val = int(attr_val)
+                                        object[key][
+                                            attr_name] = attr_val
+                                    elif isinstance(object[key]
+                                                    [attr_name],
                                                     float):
-                                        attribute_value = \
-                                                float(attribute_value)
-                                        change__objects_dict[key]
-                                        [attribute_name] = attribute_value
+                                        attr_val = \
+                                                float(attr_val)
+                                        object[key]
+                                        [attr_name] = attr_val
                                     else:
-                                        change__objects_dict[key][
-                                            attribute_name] = attribute_value
+                                        object[key][
+                                            attr_name] = attr_val
                                 except KeyError:
                                     try:
-                                        if isinstance(int(attribute_value),
+                                        if isinstance(int(attr_val),
                                                       int):
-                                            change__objects_dict[key]
-                                            [attribute_name] = int(
-                                                attribute_value)
+                                            object[key]
+                                            [attr_name] = int(
+                                                attr_val)
                                     except ValueError:
                                         try:
                                             if isinstance(float
-                                                          (attribute_value),
+                                                          (attr_val),
                                                           float):
-                                                change__objects_dict[key]
-                                                [attribute_name] = float(
-                                                    attribute_value)
+                                                object[key]
+                                                [attr_name] = float(
+                                                    attr_val)
                                         except ValueError:
-                                            change__objects_dict[key][attribute_name] = attribute_value
+                                            object[key][attr_name] = attr_val
                                 storage.save()
                             else:
                                 print("** value missing **")
@@ -198,9 +198,9 @@ class HBNBCommand(cmd.Cmd):
                 if len(list_args) > 1:
                     key = f"{list_args[0]}.{list_args[1]}"
                     storage.reload()
-                    change__objects_dict = storage.all()
-                    if key in change__objects_dict:
-                        del change__objects_dict[key]
+                    object = storage.all()
+                    if key in object:
+                        del object[key]
                         storage.save()
                     else:
                         print("** no instance found **")
