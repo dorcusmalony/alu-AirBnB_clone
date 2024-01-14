@@ -7,17 +7,17 @@ from models.base_model import BaseModel
 
 
 class User(BaseModel):
-  """
-  Public class attributes:
-  email: string - empty string
-  password: string - empty string
-  first_name: string - empty string
-  last_name: string - empty string
-  """
+    """
+    Public class attributes:
+    email: string - empty string
+    password: string - empty string
+    first_name: string - empty string
+    last_name: string - empty string
+    """
 
-  def __init__(self):
-    self.email = ""
-    self.password = ""
-    self.first_name = ""
-    self.last_name = ""
-    super().__init__()
+    def __init__(self):
+      self.email = ""
+      self.password = ""
+      self.first_name = ""
+      self.last_name = ""
+      super().__init__()
