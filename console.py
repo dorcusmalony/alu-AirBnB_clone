@@ -66,7 +66,7 @@ class HBNBCommand(cmd.Cmd):
                             if len(list_args) > 3:
                                 attr_name = list_args[2]
                                 attr_val = str(ast.literal_eval
-                                                      (list_args[3]))
+                                               (list_args[3]))
                                 try:
                                     if isinstance(object[key]
                                                   [attr_name],
@@ -265,6 +265,7 @@ class HBNBCommand(cmd.Cmd):
                 stop = self.postcmd(stop, line)
         except EOFError:
             self.do_EOF("\n")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
