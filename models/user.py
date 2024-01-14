@@ -1,7 +1,19 @@
+#!/usr/bin/python3
+"""
+Write a class User that inherits
+from BaseModel: models/user.py
+"""
 from models.base_model import BaseModel
 
 
 class User(BaseModel):
+  """
+  Public class attributes:
+  email: string - empty string
+  password: string - empty string
+  first_name: string - empty string
+  last_name: string - empty string
+  """
 
   def __init__(self):
     self.email = ""
