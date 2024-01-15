@@ -19,7 +19,6 @@ import cmd
 import copy
 import sys
 
-
 class HBNBCommand(cmd.Cmd):
     """
     Your command interpreter should implement:
@@ -60,47 +59,50 @@ class HBNBCommand(cmd.Cmd):
                 if len(list_args) > 1:
                     key = f"{list_args[0]}.{list_args[1]}"
                     storage.reload()
-                    object = storage.all()
-                    if key in object:
+                    change__objects_dict = storage.all()
+                    if key in change__objects_dict:
                         if len(list_args) > 2:
                             if len(list_args) > 3:
-                                attr_name = list_args[2]
-                                attr_val = str(ast.literal_eval
-                                               (list_args[3]))
+                                attribute_name = list_args[2]
+                                attribute_value = str(ast.literal_eval
+                                                        (list_args[3]))
                                 try:
-                                    if isinstance(object[key]
-                                                  [attr_name],
-                                                  int):
-                                        attr_val = int(attr_val)
-                                        object[key][
-                                            attr_name] = attr_val
-                                    elif isinstance(object[key]
-                                                    [attr_name],
+                                    if isinstance(change__objects_dict[key]
+                                                    [attribute_name], int):
+                                        attribute_value = int
+                                        (attribute_value)
+                                        change__objects_dict[key]
+                                        [attribute_name] = attribute_value
+                                    elif isinstance(change__objects_dict
+                                                    [key][attribute_name],
                                                     float):
-                                        attr_val = \
-                                                float(attr_val)
-                                        object[key]
-                                        [attr_name] = attr_val
+                                        attribute_value = float
+                                        (attribute_value)
+                                        change__objects_dict[key]
+                                        [attribute_name] = attribute_value
                                     else:
-                                        object[key][
-                                            attr_name] = attr_val
+                                        change__objects_dict[key]
+                                        [attribute_name] = attribute_value
                                 except KeyError:
                                     try:
-                                        if isinstance(int(attr_val),
-                                                      int):
-                                            object[key]
-                                            [attr_name] = int(
-                                                attr_val)
+                                        if isinstance(int(attribute_value),
+                                                        int):
+                                            change__objects_dict[key]
+                                            [attribute_name] = int(
+                                                attribute_value)
                                     except ValueError:
                                         try:
-                                            if isinstance(float
-                                                          (attr_val),
-                                                          float):
-                                                object[key]
-                                                [attr_name] = float(
-                                                    attr_val)
+                                            if isinstance(
+                                                    float
+                                                    (attribute_value),
+                                                    float):
+                                                change__objects_dict[key]
+                                                [attribute_name] = float(
+                                                    attribute_value)
                                         except ValueError:
-                                            object[key][attr_name] = attr_val
+                                            change__objects_dict[key]
+                                            [attribute_name] = \
+                                                attribute_value
                                 storage.save()
                             else:
                                 print("** value missing **")
@@ -119,20 +121,23 @@ class HBNBCommand(cmd.Cmd):
         based or not on the class name.
         Ex: $ all BaseModel or $ all.
         """
-        if arg in self.HBNBClasses or arg == "":
-            storage.reload()
-            display_all_list = []
-            temp_show_dict = copy.deepcopy(storage.all())
-            for key in list(temp_show_dict):
-                base_class = temp_show_dict[key]["__class__"]
-                del temp_show_dict[key]["__class__"]
-                display_all_list.append(
-                    f"[{base_class}] ({temp_show_dict[key]['id']}) \
-                            {temp_show_dict[key]}"
-                    )
-            print(display_all_list)
+        if arg == "":
+            print("** class name missing **")
         else:
-            print("** class doesn't exist **")
+            if arg in self.HBNBClasses or arg == ".":
+                storage.reload()
+                display_all_list = []
+                temp_show_dict = copy.deepcopy(storage.all())
+                for key in list(temp_show_dict):
+                    base_class = temp_show_dict[key]["__class__"]
+                    del temp_show_dict[key]["__class__"]
+                    display_all_list.append(
+                        f"[{base_class}] ({temp_show_dict[key]['id']}) \
+                                {temp_show_dict[key]}"
+                        )
+                print(display_all_list)
+            else:
+                print("** class doesn't exist **")
 
     def do_create(self, arg):
         """
@@ -195,9 +200,9 @@ class HBNBCommand(cmd.Cmd):
                 if len(list_args) > 1:
                     key = f"{list_args[0]}.{list_args[1]}"
                     storage.reload()
-                    object = storage.all()
-                    if key in object:
-                        del object[key]
+                    change__objects_dict = storage.all()
+                    if key in change__objects_dict:
+                        del change__objects_dict[key]
                         storage.save()
                     else:
                         print("** no instance found **")
@@ -262,7 +267,6 @@ class HBNBCommand(cmd.Cmd):
                 stop = self.postcmd(stop, line)
         except EOFError:
             self.do_EOF("\n")
-
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
