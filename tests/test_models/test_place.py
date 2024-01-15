@@ -22,7 +22,7 @@ class TestPlace(unittest.TestCase):
         place_1.save()
         storage.reload()
         self.assertTrue(place1_key in storage.all())
-    
+
     def test_place_public_class_attribute(self):
         self.assertEqual(Place.city_id, "")
         self.assertEqual(Place.user_id, "")

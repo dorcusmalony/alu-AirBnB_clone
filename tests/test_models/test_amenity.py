@@ -22,6 +22,6 @@ class TestAmenity(unittest.TestCase):
         amenity_1.save()
         storage.reload()
         self.assertTrue(amenity1_key in storage.all())
-    
+
     def test_amenity_public_class_attribute(self):
         self.assertEqual(Amenity.name, "")
