@@ -23,6 +23,16 @@ class FileStorage:
     JSON file (__file_path) exists ; otherwise, do nothing.
     If the file doesn’t exist, no exception should be raised)
     """
+    __file_path = "file.json"
+    __objects = {}
+
+    @classmethod
+    def get__file_path(cls):
+        return cls.__file_path
+
+    @classmethod
+    def get__objects(cls):
+        return cls.__objects
 
     def __init__(self):
         self.__file_path = "file.json"
