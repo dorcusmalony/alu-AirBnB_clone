@@ -27,11 +27,11 @@ class TestBaseModel(unittest.TestCase):
         o3.save()
         storage.reload()
         self.assertEqual(o1.__str__(),
-                        f"[{type(o1).__name__}] ({o1.id}) {o1.__dict__}")
+                         f"[{type(o1).__name__}] ({o1.id}) {o1.__dict__}")
         self.assertEqual(o2.__str__(),
-                        f"[{type(o2).__name__}] ({o2.id}) {o2.__dict__}")
+                         f"[{type(o2).__name__}] ({o2.id}) {o2.__dict__}")
         self.assertEqual(o3.__str__(),
-                        f"[{type(o3).__name__}] ({o3.id}) {o3.__dict__}")
+                         f"[{type(o3).__name__}] ({o3.id}) {o3.__dict__}")
 
     def test_save_method(self):
         obj1 = BaseModel()
