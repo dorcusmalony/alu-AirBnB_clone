@@ -3,7 +3,7 @@
 Write a class FileStorage that serializes instances
 to a JSON file and deserializes JSON file to instances:
 """
-from datetime import datetime
+from datetime import datetime as dt
 import copy
 import json
 
@@ -20,7 +20,8 @@ class FileStorage:
     new(self, obj): sets in __objects the obj with key <obj class name>.id
     save(self): serializes __objects to the JSON file (path: __file_path)
     reload(self): deserializes the JSON file to __objects (only if the
-    JSON file (__file_path) exists ; otherwise, do nothing. If the file doesn’t exist, no exception should be raised)
+    JSON file (__file_path) exists ; otherwise, do nothing.
+    If the file doesn’t exist, no exception should be raised)
     """
 
     def __init__(self):
@@ -35,13 +36,13 @@ class FileStorage:
 
     def reload(self):
         try:
-          with open(self.__file_path, "r", encoding="utf-8") as jsfpr:
-              self.__objects = json.load(jsfpr)
-              for key in self.__objects.keys():
-                  self.__objects[key]["created_at"] = datetime.fromisoformat(
-                      self.__objects[key]["created_at"])
-                  self.__objects[key]["updated_at"] = datetime.fromisoformat(
-                      self.__objects[key]["updated_at"])
+            with open(self.__file_path, "r", encoding="utf-8") as jsfpr:
+                self.__objects = json.load(jsfpr)
+                for key in self.__objects.keys():
+                    self.__objects[key]["created_at"] = dt.fromisoformat(
+                        self.__objects[key]["created_at"])
+                    self.__objects[key]["updated_at"] = dt.fromisoformat(
+                        self.__objects[key]["updated_at"])
 
         except FileNotFoundError:
           pass
@@ -62,7 +63,7 @@ class FileStorage:
                 count += 1
             else:
               key = list(self.__objects)[0]
-              if isinstance(self.__objects[key]["created_at"], datetime):
+              if isinstance(self.__objects[key]["created_at"], dt):
                 self.__objects[key]["created_at"] = self.__objects[key][
                     "created_at"].isoformat()
                 self.__objects[key]["updated_at"] = self.__objects[key][
