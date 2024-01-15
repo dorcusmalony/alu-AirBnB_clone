@@ -36,12 +36,12 @@ class FileStorage:
     def reload(self):
         try:
           with open(self.__file_path, "r", encoding="utf-8") as jsfpr:
-            self.__objects = json.load(jsfpr)
-            for key in self.__objects.keys():
-              self.__objects[key]["created_at"] = datetime.fromisoformat(
-                  self.__objects[key]["created_at"])
-              self.__objects[key]["updated_at"] = datetime.fromisoformat(
-                  self.__objects[key]["updated_at"])
+              self.__objects = json.load(jsfpr)
+              for key in self.__objects.keys():
+                  self.__objects[key]["created_at"] = datetime.fromisoformat(
+                      self.__objects[key]["created_at"])
+                  self.__objects[key]["updated_at"] = datetime.fromisoformat(
+                      self.__objects[key]["updated_at"])
 
         except FileNotFoundError:
           pass
