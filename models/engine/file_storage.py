@@ -45,7 +45,7 @@ class FileStorage:
                         self.__objects[key]["updated_at"])
 
         except FileNotFoundError:
-          pass
+            pass
 
     def save(self):
         try:
