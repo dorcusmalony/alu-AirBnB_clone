@@ -21,7 +21,7 @@ class TestFileStorage(unittest.TestCase):
     def test_file_storage_private_class_attributes(self):
         self.assertEqual(FileStorage.__file_path, "file.json")
         self.assertEqual(FileStorage.__objects, {})
-   
+
     def test_all_method(self):
         model2 = BaseModel()
         model2.save()
