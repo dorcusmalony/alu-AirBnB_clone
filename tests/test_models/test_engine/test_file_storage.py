@@ -19,8 +19,8 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsInstance(storage, FileStorage)
 
     def test_file_storage_private_class_attributes(self):
-        self.assertEqual(FileStorage.get__file_path, "file.json")
-        self.assertEqual(FileStorage.get__objects, {})
+        self.assertEqual(FileStorage.get__file_path(), "file.json")
+        self.assertEqual(FileStorage.get__objects(), {})
 
     def test_all_method(self):
         model2 = BaseModel()
