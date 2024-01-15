@@ -53,7 +53,8 @@ class FileStorage:
                 if len(self.__objects) != 1:
                     count = 0
                     for k in list(self.__objects):
-                        if (count == len(self.__objects)) or (isinstance(self.__objects[k]["created_at"], str)):
+                        if (count == len(self.__objects)) \
+                            or (isinstance(self.__objects[k]["created_at"], str)):
                             break
                         self.__objects[k]["created_at"] = self.__objects[k][
                             "created_at"].isoformat()
