@@ -1,8 +1,9 @@
 header {
-    background: white url("../images/logo.png");
-    background-repeat: no-repeat;
-    background-position: 20px center;
+    background-color: #FFFFFF;
     height: 70px;
     width: 100%;
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px #CCCCCC;
+    background-image: url("../images/logo.png");
+    background-repeat: no-repeat;
+    background-position: left 20px top 5px;
 }
